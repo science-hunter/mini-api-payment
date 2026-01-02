@@ -10,6 +10,12 @@
 			"database_name": "paymentapp-db"
 		}
 	],
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "b495f3a17a574c6c83060b116c39057a"
+		}
+	],
 	"observability": {
 		"enabled": true
 	}

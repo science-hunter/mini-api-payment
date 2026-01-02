@@ -16,6 +16,8 @@
 		"publish": true
 	},
 	"devDependencies": {
+		"@types/pg": "^8.16.0",
+		"pg": "^8.16.3",
 		"typescript": "5.9.3",
 		"wrangler": "4.56.0"
 	},

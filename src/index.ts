@@ -1,14 +1,24 @@
 import { renderHtml } from "./renderHtml";
+import { Client } from "pg";
+
 
 export default {
-	async fetch(request, env) {
-		const stmt = env.DB.prepare("SELECT * FROM comments LIMIT 3");
-		const { results } = await stmt.all();
+	async fetch(request, env, ctx) {
+		// Hyperdrive provides a unique generated connection string to connect to
+		// your database via Hyperdrive that can be used with your existing tools
+		const client = new Client({ connectionString: env.HYPERDRIVE.connectionString });
+		await client.connect();
 
-		return new Response(renderHtml(JSON.stringify(results, null, 2)), {
-			headers: {
-				"content-type": "text/html",
-			},
-		});
+		try {
+		// Sample SQL query
+		const result = await client.query("SELECT * FROM pg_tables");
+
+		// Close the client after the response is returned
+		ctx.waitUntil(client.end());
+
+		return Response.json({result: result.rows});
+		} catch (e) {
+		return Response.json({ error: e instanceof Error ? e.message : e }, { status: 500 });
+		}
 	},
 } satisfies ExportedHandler<Env>;

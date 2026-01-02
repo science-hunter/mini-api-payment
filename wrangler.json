@@ -1,0 +1,16 @@
+{
+	"compatibility_date": "2025-10-08",
+	"main": "src/index.ts",
+	"name": "mini-api-payment",
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_id": "e413028e-33e6-4091-9e18-f3e2dd8cfd04",
+			"database_name": "paymentapp-db"
+		}
+	],
+	"observability": {
+		"enabled": true
+	}
+}
